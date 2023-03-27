@@ -1,0 +1,261 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    font-size: 62.5%;
+}
+body{
+    background-image: url(./img/wallpaperflare.com_wallpaper\ \(2\).jpg);
+    color: azure;
+}
+@font-face {
+    font-family: Pokemon;
+    src: url(./font/PocketMonk-15ze.ttf);
+}
+h1{
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+}
+h2{
+    display: flex;
+    justify-content: center;
+    font-family: Pokemon;
+    font-size: 3.6rem;
+}
+p{
+    font-size: 3rem;
+}
+.pokemones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+.pokemones label{
+    height: 15rem;
+    width: 15rem;
+    background-color: rgb(240,195,5);
+    border-radius: 2rem;
+    border: 5px solid #3269b2;
+
+}
+.pokemones :hover{
+    background-color: rgb(29,43,93);
+    transform: scale(1.5);  
+}
+
+.pokemones label img:hover{
+    background-color: unset;
+    transform: none;
+}  
+
+.pokemones label img{
+    height: 10rem;
+    margin-top: 2rem;
+    margin-left: 3rem;
+    display: flex;
+}
+
+.inicio-juego p{
+    display: flex;
+    justify-content: center;
+    font-family: Pokemon;
+}
+.logopokemon img{
+    margin: 0 auto;
+    width: 500px;
+}
+#boton-pokedex{
+    display:flex;
+    justify-content: center;
+    width: 15rem;
+    height: 15rem;
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 9px solid #3269b2;
+    background-image: url(./img/pokebola.png);
+    background-repeat: no-repeat;
+    background-size: 15rem 15rem;
+    background-position: center;
+}
+#Movimientos{
+    width: 100%;
+    display: inline-block;
+    flex-direction:row;
+    align-content: flex-end;
+    justify-content: space-around;    
+}
+.panel-batalla{
+    display: flex;
+    margin: 1.5rem;
+    font-family:Pokemon;
+}
+#Movimientos .botones-ataques{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    opacity: 0.8;
+    border-radius: 2rem;
+    color: white;
+    width: 60rem;
+    height: 25rem;
+    order: 2;
+    margin-top: 1rem;
+    margin-left: auto;
+    
+}
+.botonAtaque{
+    background-color:white;
+    border-radius: 1rem;
+    border: 3px solid red;
+    font-family: Pokemon;
+    font-size: 2rem;
+    color:rgb(94, 94, 94);
+    margin: 0.3rem;
+}
+
+#Movimientos .botones-ataques h2{
+    margin-bottom: 5rem;
+}
+
+#Movimientos .informacion-ataques{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start; 
+    grid-template-columns: 250px 250px;
+
+    background-color: black;
+    opacity: 0.8;
+    border-radius: 2rem;
+    color: white;
+    width: 60rem;
+    height: 25rem;
+    order: 1;
+    font-size: 3.6rem;
+    overflow:scroll;                                   /* CON ESTO ACTIVO LA BARRA DE SCROLL */
+}
+.informacion-ataques-jugadores{
+    display: inline-flex;
+    
+}
+.resumen-batalla{
+    display: flex;
+    justify-content: center;
+    min-width: 16rem;
+    min-height: 16rem;
+    display: flex;
+    border: solid 1px white;
+    border-radius: 10px;
+    margin: 3rem;
+}
+#ataques-jugador, #ataques-enemigo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#Movimientos .informacion-ataques::-webkit-scrollbar{   /* EsTO ES PARA LA BARRA SCROLL  */
+    width: 1rem;
+    color: rgb(125, 118, 118);
+}
+.botonAtaque{
+    height: 8rem;
+    width: 10rem;
+    gap: 4rem;
+    border-radius: 2rem;
+}
+input{
+    display: none; 
+}
+input:checked + label{
+    background-color: rgb(29,43,93);
+    transform: scale(1.5);
+    margin: 5rem; 
+}
+.pantalla-batalla{    
+    background-color: black;
+    opacity: 0.8;
+    border-radius: 2rem;
+    color: white;
+    width: 50rem;
+    margin: 0 auto;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    font-family:Pokemon;
+}
+.pokemon-info{
+    display: flex;
+    border: solid 2px white;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 22rem;
+    min-height: 12rem;
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    
+}
+#pokemon-jugador{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+#pokemon-jugador img{
+    display: flex;
+    align-items: flex-start;
+    width: 12rem;
+    margin: 1rem;
+}
+
+#pokemon-enemigo{
+    display: flex;
+    justify-content: flex-end;  
+}
+#pokemon-enemigo img{
+    display: flex;
+    align-items: flex-end;
+    width: 12rem;
+    margin: 1rem;
+}
+
+.logopokemon2 img{
+    margin: 0 auto;
+    width: 360px;
+}
+.panel-reinicio{
+    font-family:Pokemon;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#boton-reiniciar{
+    height: 8rem;
+    width: 15rem;
+    background-color:white;
+    border-radius: 2rem;
+    border: 5px solid red;
+    font-family: Pokemon;
+    font-size: 3rem;
+    color:rgb(196, 186, 186);
+}
+
+ @media (max-width:360px){
+    .pokemones{
+        flex-direction: column;
+    }
+ }
