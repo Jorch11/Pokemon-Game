@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8" />                                   <!--E meta charset UTF-8 es muy importante porque le indica al código en que lenguaje va a ser escrito-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> POKEMON! </title>                                   <!--El defer sirve para que al llamar el archivo no presente error-->
+        <link rel="stylesheet" href="style.css">
+                                                                    
+    </head>
+    <body>
+
+        <section id = "Pokedex">
+            <h1>
+                <picture class="logopokemon">
+                    <img src="./img/pngwing.com (1).png" alt="logo pokemons png">
+                </picture>
+            </h1>      <!--El H1 es el titulo principal de la página y solo se puede utilizar una vez-->
+    
+            
+            <h2> Elige a tu Pokemón:</h2>
+
+            <div class="pokemones" id="cuadro-pokemones">
+                <input type = "radio" name = pokemon id="pikachu"/>
+                <label for = "pikachu"> <picture><img src="./img/pngwing.com (3).png" alt="pikachuPic"></picture> </label>
+                <input type = "radio" name = pokemon id="Squirtle"/>
+                <label for = "Squirtle"><img src="./img/squirtle.png" alt="imgSquirtle"></label>
+                <input type = "radio" name = pokemon id="Snorlax"/>
+                <label for = "Snorlax"><img src="./img/snorlax.png" alt="snorlaximg"></label>
+                <input type = "radio" name = pokemon id="Charmander"/>
+                <label for = "Charmander"><img src="./img/pngwing.com (2).png" alt="imgcharmander"></label>
+                
+            </div>
+            <div class="inicio-juego">
+                <p>JUGAR!</p>
+                <button id= "boton-pokedex"></button>
+            </div>
+        </section>             <!-- Section es para divir las secciones de nuestras páginas-->
+
+
+        <section id = "Movimientos">
+            <h1>
+                <picture class="logopokemon2">
+                    <img src="./img/pngwing.com (1).png" alt="logo pokemons png">
+                </picture>
+            </h1>      <!--El H1 es el titulo principal de la página y solo se puede utilizar una vez-->
+    
+            <div class="pantalla-batalla"> <!-- código para la pantalla en donde se encuentran los dos pokemones -->
+                <div id="pokemon-enemigo">
+                    <div class="pokemon-info">
+                        <p>💔</p>
+                        <span id="vidaRival">3</span>
+                        <p id="enemigo-pokemon">💔</p>
+                    </div>
+                    <!-- <p> Pokemón rival <br> <span id="enemigo-pokemon">💔</span> 💔  <span id="vidaRival">3</span></p> -->
+                </div>
+                <div id="pokemon-jugador">
+                    <div class="pokemon-info">
+                        <p>💔</p>
+                        <span id="vidaJugador">3</span>
+                        <p id="nombre-pokemon"></p>
+                    </div>
+                    <!-- <p><span id="nombre-pokemon"></span>💔<span id="vidaJugador">   3</span></p> -->
+                </div>
+            </div>
+            <section class="panel-batalla">  <!-- código para la pantalla en donde se encuentran la info de la batalla -->
+                <div class="botones-ataques">
+                    <h2> Elige tu Ataque:</h2>
+                    <div id="botones-ataques-contenido">
+                        <button id="boton-tierra" class="botonAtaque">Tierra 🌱</button>
+                        <button id="boton-agua" class="botonAtaque">Agua 💧</button>
+                        <button id="boton-fuego" class="botonAtaque">Fuego 🔥</button>
+                        <button id="boton-trueno" class="botonAtaque">Trueno ⚡</button>
+                        <button id="boton-hielo" class="botonAtaque"> Viento ❄</button>
+                    </div>
+                </div>
+                
+                <div class="informacion-ataques">
+                    <!-- <p>Información</p> -->
+                    <!-- <section 
+                    id="Info">
+                    <p>Información</p>
+                    </section> -->
+                    <div class="informacion-ataques-jugadores">
+                        <div class="resumen-batalla">
+                            <!-- <span id="vidaRival">3</span>
+                            <p id="enemigo-pokemon"></p> -->
+                            
+                            <div id="ataques-jugador"><p>Jugador</p></div>
+                        </div>
+                        <div class="panel-reinicio">
+                            <p id="Info"></p>
+                            <section id ="Play again">
+                                <button id="boton-reiniciar"> Play Again! </button>
+                            </section>
+                        </div>
+
+                        <div class="resumen-batalla">
+                            <!-- <span id="vidaRival">3</span>
+                            <p id="enemigo-pokemon"></p> -->
+                            
+                            <div id="ataques-enemigo"><p>Rival</p></div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </section>
+
+        </section>
+        <script src = "./poke.js" defer> </script>     <!--El punto en src significa que el archivo 
+            js esta en la misma carpeta que el html y el / indica el nombre del archivo o de la subcarpeta-->
+    </body>
+
+</html>
