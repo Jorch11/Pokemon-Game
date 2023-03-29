@@ -1,125 +1,181 @@
-let inputPikachu = document.getElementById("pikachu");
-let inputSquirtle = document.getElementById("Squirtle");
-let inputSnorlax = document.getElementById("Snorlax");
-let inputCharmander = document.getElementById("Charmander");
+const contenedorTarjetas = document.getElementById("cuadro-pokemones")
+let inputPikachu 
+let inputSquirtle
+let inputSnorlax 
+let inputCharmander
 
-let spanJugador = document.getElementById("nombre-pokemon")
-let spanEnemigo = document.getElementById("enemigo-pokemon")
+const spanJugador = document.getElementById("nombre-pokemon")
+const spanEnemigo = document.getElementById("enemigo-pokemon")
 
 let Enemigo = ""
 
+let pokemones = []
 let AtaqueJugador
 let AtaqueEnemigo
+let opcionDepokemones
 let vidaJugador = 3
 let vidaRival = 3
 
-let botonTierra = document.getElementById("boton-tierra")
+class Pokemon{
+    constructor(nombre,foto,vida){
+        this.nombre = nombre
+        this.foto = foto
+        this.vida = vida
+        this.ataques = []
+    }
+}
+let Pikachu = new Pokemon('pikachu',"./img/pikachu.png",5)
+let Squirtle = new Pokemon('Squirtle','./img/squirtle.png',5)
+let Snorlax = new Pokemon('Snorlax','./img/snorlax.png',5)
+let Charmander = new Pokemon('Charmander',"./img/charmander.png",5) 
+
+Pikachu.ataques.push(
+    {nombre: '⚡', id:'boton-trueno'},
+    {nombre: '⚡', id:'boton-trueno'},
+    {nombre: '⚡', id:'boton-trueno'},
+    {nombre: '🔥', id:'boton-fuego'},
+    {nombre: '🌱', id:'boton-tierra'}
+)
+Squirtle.ataques.push(
+    {nombre: '💧', id:'boton-agua'},
+    {nombre: '💧', id:'boton-agua'},
+    {nombre: '💧', id:'boton-agua'},
+    {nombre: '⚡', id:'boton-trueno'},
+    {nombre: '🌱', id:'boton-tierra'}
+)
+Charmander.ataques.push(
+    {nombre: '🔥', id:'boton-fuego'},
+    {nombre: '🔥', id:'boton-fuego'},
+    {nombre: '🔥', id:'boton-fuego'},
+    {nombre: '🌱', id:'boton-tierra'},
+    {nombre: '⚡', id:'boton-trueno'},
+)
+
+Snorlax.ataques.push(
+    {nombre: '🌱', id:'boton-tierra'},
+    {nombre: '🌱', id:'boton-tierra'},
+    {nombre: '🌱', id:'boton-tierra'},
+    {nombre: '💧', id:'boton-agua'},
+    {nombre: '🔥', id:'boton-fuego'},
+)
+pokemones.push(Squirtle,Pikachu,Charmander,Snorlax)
+
+pokemones.forEach((Pokemon)=> {
+    opcionDepokemones = `
+    <input type = "radio" name = "pokemon" id=${Pokemon.nombre} />
+    <label for = "${Pokemon.nombre}"><picture><img src=${Pokemon.foto} alt=${Pokemon.foto}></picture> </label>
+        `
+    contenedorTarjetas.innerHTML += opcionDepokemones
+    console.log(contenedorTarjetas)
+
+    inputPikachu = document.getElementById("pikachu");
+    inputSquirtle = document.getElementById("Squirtle");
+    inputSnorlax = document.getElementById("Snorlax");
+    inputCharmander = document.getElementById("Charmander");
+})
+
+const botonTierra = document.getElementById("boton-tierra")
 botonTierra.addEventListener('click',ataqueTierra)
-let botonAgua = document.getElementById("boton-agua")
+const botonAgua = document.getElementById("boton-agua")
 botonAgua.addEventListener('click',ataqueAgua)
-let botonFuego = document.getElementById("boton-fuego")
+const botonFuego = document.getElementById("boton-fuego")
 botonFuego.addEventListener('click',ataqueFuego)
-let botonTrueno = document.getElementById("boton-trueno")
+const botonTrueno = document.getElementById("boton-trueno")
 botonTrueno.addEventListener('click',ataqueTrueno)
-let botonHielo = document.getElementById("boton-hielo")
+const botonHielo = document.getElementById("boton-hielo")
 botonHielo.addEventListener('click',ataqueHielo)
 
-let sectionPokedex = document.getElementById("Pokedex")
-let sectionMovimientos = document.getElementById("Movimientos")
+const sectionPokedex = document.getElementById("Pokedex")
+const sectionMovimientos = document.getElementById("Movimientos")
 sectionMovimientos.style.display = 'none'
-let sectionPlayagain = document.getElementById("Play again")
+const sectionPlayagain = document.getElementById("Play again")
 sectionPlayagain.style.display = 'none'
 
-let botonReiniciar = document.getElementById('boton-reiniciar')
+const botonReiniciar = document.getElementById('boton-reiniciar')
 botonReiniciar.addEventListener('click',reiniciar)
 
-let pokemonEscogido = document.getElementById('pokemon-jugador')
-let pokemonRivalEscogido = document.getElementById('pokemon-enemigo')
+const pokemonEscogido = document.getElementById('pokemon-jugador')
+const pokemonRivalEscogido = document.getElementById('pokemon-enemigo')
 
 let imagenPokemonEscogido = document.createElement('img')
 let imagenPokemonRivalEscogido = document.createElement('img')
 
+const spanVidaJugador = document.getElementById('vidaJugador')
+const spanVidaRival = document.getElementById('vidaRival')
 
-function mascotaEnemiga(aleatoria){
-    if(aleatoria == 1){
-        Enemigo = "pikachu"
-    }
-    else if(aleatoria == 2){
-        Enemigo = "Squirtle"
-    }
-    else if(aleatoria == 3){
-        Enemigo = "Charmander"
-    }
-    else if(aleatoria == 4){
-        Enemigo = "Snorlax"
-    }
-    console.log(Enemigo)
-    enemigo(Enemigo)
-}
+const mensaje2 = document.getElementById('Info')
+const mensajeAtaqueJugador = document.getElementById("ataques-jugador")
+const mensajeAtaqueEnemigo = document.getElementById("ataques-enemigo")
+
+
+
 function pokedex(){
 
+    sectionMovimientos.style.display = 'inline-block'
+    sectionPokedex.style.display = 'none'
 
     if (inputPikachu.checked){
         alert("Usted ha seleccionado pikachu")
-        spanJugador.innerHTML = "Pikachu"
-        imagenPokemonEscogido.src = './img/pngwing.com (3).png'
+        spanJugador.innerHTML = inputPikachu.id
+        imagenPokemonEscogido.src = './img/pikachu.png'
         pokemonEscogido.appendChild(imagenPokemonEscogido)
     }
     else if (inputSquirtle.checked){    // el.checked verifica si esta seleccionado
         alert("Usted ha seleccionado Squirtle")
-        spanJugador.innerHTML = "Squirtle"
+        spanJugador.innerHTML = inputSquirtle.id
         imagenPokemonEscogido.src = './img/squirtle.png'
         pokemonEscogido.appendChild(imagenPokemonEscogido)
     }
     else if (inputSnorlax.checked){
         alert("Usted ha seleccionado Snorlax")
-        spanJugador.innerHTML = "Snorlax"
+        spanJugador.innerHTML = inputSnorlax.id
         imagenPokemonEscogido.src = './img/snorlax.png'
         pokemonEscogido.appendChild(imagenPokemonEscogido)
     }
     else if (inputCharmander.checked){
         alert("Usted ha seleccionado Charmander")
-        spanJugador.innerHTML = "Charmander"
-        imagenPokemonEscogido.src = './img/pngwing.com (2).png'
+        spanJugador.innerHTML = inputCharmander.id
+        imagenPokemonEscogido.src = './img/charmander.png'
         pokemonEscogido.appendChild(imagenPokemonEscogido)
     }
     else{
         alert("NO HAS SELECCIONADO NINGÚN POKEMÓN")
     }
-    sectionMovimientos.style.display = 'inline-block'
-    sectionPokedex.style.display = 'none'
-    aleatorio()
+  
     let azar = aleatorio()
     console.log(azar)
-    mascotaEnemiga(azar)
+    enemigo(azar)
     
     }
 function aleatorio(){
-    return Math.floor(Math.random()*4+1)
+    return Math.floor(Math.random()*((pokemones.length)))
 }
 
-
 function enemigo(oponente){
-    if (oponente == "pikachu"){
-        spanEnemigo.innerHTML = "Pikachu"
-        imagenPokemonRivalEscogido.src = './img/pngwing.com (3).png'
-        pokemonRivalEscogido.appendChild(imagenPokemonRivalEscogido)
-    }
-    else if (oponente == "Squirtle"){    // el.checked verifica si esta seleccionado
-        spanEnemigo.innerHTML = "Squirtle"
-        imagenPokemonRivalEscogido.src = './img/squirtle.png'
-        pokemonRivalEscogido.appendChild(imagenPokemonRivalEscogido)
-    }
-    else if (oponente == "Snorlax"){
-        spanEnemigo.innerHTML = "Snorlax"
-        imagenPokemonRivalEscogido.src = './img/snorlax.png'
-        pokemonRivalEscogido.appendChild(imagenPokemonRivalEscogido)
-    }
-    else if (oponente == "Charmander"){
-        spanEnemigo.innerHTML = "Charmander"
-        imagenPokemonRivalEscogido.src = './img/pngwing.com (2).png'
-        pokemonRivalEscogido.appendChild(imagenPokemonRivalEscogido)
-    }
+
+    spanEnemigo.innerHTML = pokemones[oponente].nombre
+    imagenPokemonRivalEscogido.src = pokemones[oponente].foto
+    pokemonRivalEscogido.appendChild(imagenPokemonRivalEscogido)
+    // if (oponente == 1){
+    //     spanEnemigo.innerHTML = "Pikachu"
+    //     imagenPokemonRivalEscogido.src = './img/pikachu.png'
+    //     pokemonRivalEscogido.appendChild(imagenPokemonRivalEscogido)
+    // }
+    // else if (oponente == 2){    // el.checked verifica si esta seleccionado
+    //     spanEnemigo.innerHTML = "Squirtle"
+    //     imagenPokemonRivalEscogido.src = './img/squirtle.png'
+    //     pokemonRivalEscogido.appendChild(imagenPokemonRivalEscogido)
+    // }
+    // else if (oponente == 4){
+    //     spanEnemigo.innerHTML = "Snorlax"
+    //     imagenPokemonRivalEscogido.src = './img/snorlax.png'
+    //     pokemonRivalEscogido.appendChild(imagenPokemonRivalEscogido)
+    // }
+    // else if (oponente == 3){
+    //     spanEnemigo.innerHTML = "Charmander"
+    //     imagenPokemonRivalEscogido.src = './img/charmander.png'
+    //     pokemonRivalEscogido.appendChild(imagenPokemonRivalEscogido)
+    // }
 }
 
 function ataqueTierra(){
@@ -167,9 +223,6 @@ function ataqueEnemigo(){
 
 function combatir(){
 
-    let spanVidaJugador = document.getElementById('vidaJugador')
-    let spanVidaRival = document.getElementById('vidaRival')
-
     if(AtaqueJugador == AtaqueEnemigo){
         mensaje("EMPATE")
     }
@@ -208,22 +261,16 @@ function vidas(){
 
 function mensaje(resultadoBatalla){
 
-    let mensaje = document.getElementById('Info')
-    let mensajeAtaqueJugador = document.getElementById("ataques-jugador")
-    let mensajeAtaqueEnemigo = document.getElementById("ataques-enemigo")
-
+    
     let parrafoAtaqueJugador = document.createElement('p')
     let parrafoAtaqueEnemigo = document.createElement('p')
 
-    mensaje.innerHTML = resultadoBatalla
+    mensaje2.innerHTML = resultadoBatalla
     parrafoAtaqueJugador.innerHTML = AtaqueJugador
     parrafoAtaqueEnemigo.innerHTML = AtaqueEnemigo
 
-    
     mensajeAtaqueJugador.appendChild(parrafoAtaqueJugador)
     mensajeAtaqueEnemigo.appendChild(parrafoAtaqueEnemigo)
-
-
 }
 
 function reiniciar(){
