@@ -15,6 +15,7 @@ let AtaqueEnemigo
 let opcionDepokemones
 let vidaJugador = 3
 let vidaRival = 3
+let mascotaJugador
 
 class Pokemon{
     constructor(nombre,foto,vida){
@@ -117,24 +118,28 @@ function pokedex(){
     if (inputPikachu.checked){
         alert("Usted ha seleccionado pikachu")
         spanJugador.innerHTML = inputPikachu.id
+        mascotaJugador = inputPikachu.id
         imagenPokemonEscogido.src = './img/pikachu.png'
         pokemonEscogido.appendChild(imagenPokemonEscogido)
     }
     else if (inputSquirtle.checked){    // el.checked verifica si esta seleccionado
         alert("Usted ha seleccionado Squirtle")
         spanJugador.innerHTML = inputSquirtle.id
+        mascotaJugador = inputSquirtle.id
         imagenPokemonEscogido.src = './img/squirtle.png'
         pokemonEscogido.appendChild(imagenPokemonEscogido)
     }
     else if (inputSnorlax.checked){
         alert("Usted ha seleccionado Snorlax")
         spanJugador.innerHTML = inputSnorlax.id
+        mascotaJugador = inputSnorlax.id
         imagenPokemonEscogido.src = './img/snorlax.png'
         pokemonEscogido.appendChild(imagenPokemonEscogido)
     }
     else if (inputCharmander.checked){
         alert("Usted ha seleccionado Charmander")
         spanJugador.innerHTML = inputCharmander.id
+        mascotaJugador = inputCharmander.id
         imagenPokemonEscogido.src = './img/charmander.png'
         pokemonEscogido.appendChild(imagenPokemonEscogido)
     }
@@ -142,11 +147,24 @@ function pokedex(){
         alert("NO HAS SELECCIONADO NINGÚN POKEMÓN")
     }
   
+    extraerAtaques(mascotaJugador)
     let azar = aleatorio()
     console.log(azar)
     enemigo(azar)
     
     }
+
+function extraerAtaques(mascotaJugador){
+    let ataques
+    for (let i = 0; i < pokemones.length; i++) {
+        const element = array [i];
+        if (mascotaJugador === pokemones[i].nombre) {
+            ataques = pokemones[i].ataques
+        }
+        mostrarAtaques(ataques)
+    }
+}
+
 function aleatorio(){
     return Math.floor(Math.random()*((pokemones.length)))
 }
